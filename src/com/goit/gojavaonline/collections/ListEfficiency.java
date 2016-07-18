@@ -6,7 +6,8 @@ public class ListEfficiency {
 
 
     public void add(List<Integer> list) {
-            list.add(0, 0);
+
+        list.add(0, 0);
     }
 
     public void get(List<Integer> list) {

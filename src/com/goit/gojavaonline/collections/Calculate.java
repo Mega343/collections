@@ -1,7 +1,10 @@
 package com.goit.gojavaonline.collections;
 
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Calculate {
 
@@ -11,36 +14,94 @@ public class Calculate {
     List<Long> time;
 
     public static void main(String[] args) {
-        Calculate calculate = new Calculate();
+        Calculate calc = new Calculate();
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
         Set<Integer> hashSet = new HashSet<>();
         Set<Integer> treeSet = new TreeSet<>();
-        System.out.println("Populate ArrayList for 10000: " + calculate.listPopulateEfficiency(arrayList, 10000));
-        System.out.println("Add in ArrayList for 10000: " + calculate.listAddEfficiency(arrayList));
-        System.out.println("Contains in ArrayList 10000: " + calculate.listContainsEfficiency(arrayList));
-        System.out.println("Get ArrayList for 10000: " + calculate.listGetEfficiency(arrayList));
-        System.out.println("Remove from ArrayList 10000: " + calculate.listRemoveEfficiency(arrayList));
-        System.out.println("Iterator Add ArrayList for 10000: " + calculate.listIteratorAddEfficiency(arrayList,10000));
-        System.out.println("Iterator remove ArrayList for 10000: " + calculate.listIteratorRemoveEfficiency(arrayList));
-        System.out.println();
-        System.out.println("Populate LinkedList for 10000: " + calculate.listPopulateEfficiency(linkedList, 10000));
-        System.out.println("Add in LinkedList for 10000: " + calculate.listAddEfficiency(linkedList));
-        System.out.println("Contains in LinkedList 10000: " + calculate.listContainsEfficiency(linkedList));
-        System.out.println("Get LinkedList for 10000: " + calculate.listGetEfficiency(linkedList));
-        System.out.println("Remove from LinkedList 10000: " + calculate.listRemoveEfficiency(linkedList));
-        System.out.println("Iterator Add LinkedList for 10000: " + calculate.listIteratorAddEfficiency(linkedList,10000));
-        System.out.println("Iterator remove LinkedList for 10000: " + calculate.listIteratorRemoveEfficiency(linkedList));
-        System.out.println();
-        System.out.println("Hash set populate for 10000 " + calculate.setPopulateEfficiency(hashSet, 10000));
-        System.out.println("Hash set add for 10000 " + calculate.setAddEfficiency(hashSet));
-        System.out.println("Hash set contains for 10000 " + calculate.setContainsEfficiency(hashSet));
-        System.out.println("Hash set remove for 10000 " + calculate.setRemoveEfficiency(hashSet));
-        System.out.println();
-        System.out.println("Tree set populate for 10000 " + calculate.setPopulateEfficiency(treeSet, 10000));
-        System.out.println("Tree set add for 10000 " + calculate.setAddEfficiency(treeSet));
-        System.out.println("Tree set contains for 10000 " + calculate.setContainsEfficiency(treeSet));
-        System.out.println("Tree set remove for 10000 " + calculate.setRemoveEfficiency(treeSet));
+        int n = 10000;
+        Long populateEfficiencyArrayList = calc.listPopulateEfficiency(arrayList, n);
+        System.out.println("Populate ArrayList complete");
+        Long addEfficiencyArrayList = calc.listAddEfficiency(arrayList);
+        System.out.println("Add ArrayList complete");
+        Long containsEfficiencyArrayList = calc.listContainsEfficiency(arrayList);
+        System.out.println("Contains ArrayList complete");
+        Long getEfficiencyArrayList = calc.listGetEfficiency(arrayList);
+        System.out.println("Get ArrayList complete");
+        Long removeEfficiencyArrayList = calc.listRemoveEfficiency(arrayList);
+        System.out.println("Remove ArrayList complete");
+        Long iteratorAddEfficiencyArrayList = calc.listIteratorAddEfficiency(arrayList,n);
+        System.out.println("Iterator add ArrayList complete");
+        Long iteratorRemoveEfficiencyArrayList = calc.listIteratorRemoveEfficiency(arrayList);
+        System.out.println("Iterator remove ArrayList complete");
+        Long populateEfficiencyLinkedList = calc.listPopulateEfficiency(linkedList, n);
+        System.out.println("Populate LinkedList complete");
+        Long addEfficiencyLinkedList = calc.listAddEfficiency(linkedList);
+        System.out.println("Add LinkedList complete");
+        Long containsEfficiencyLinkedList = calc.listContainsEfficiency(linkedList);
+        System.out.println("Contains LinkedList complete");
+        Long getEfficiencyLinkedList = calc.listGetEfficiency(linkedList);
+        System.out.println("Get LinkedList complete");
+        Long removeEfficiencyLinkedList = calc.listRemoveEfficiency(linkedList);
+        System.out.println("Remove LinkedList complete");
+        Long listIteratorEfficiencyLinkedList = calc.listIteratorAddEfficiency(linkedList,n);
+        System.out.println("Iterator add LinkedList complete");
+        Long iteratorRemoveEfficiencyLinkedList = calc.listIteratorRemoveEfficiency(linkedList);
+        System.out.println("Iter remove LinkedList complete");
+        Long populateEfficiencyHashSet = calc.setPopulateEfficiency(hashSet, n);
+        System.out.println("Populate HashSet complete");
+        Long addEfficiencyHashSet = calc.setAddEfficiency(hashSet);
+        System.out.println("Add hashset complete");
+        Long containsEfficiencyHashSet = calc.setContainsEfficiency(hashSet);
+        System.out.println("contains hashset complete");
+        Long removeEfficiencyHashSet = calc.setRemoveEfficiency(hashSet);
+        System.out.println("remove hs complete");
+        Long populateEfficiencyTreeSet = calc.setPopulateEfficiency(treeSet, n);
+        System.out.println("Populate treeset complete");
+        Long addEfficiencyTreeSet = calc.setAddEfficiency(treeSet);
+        System.out.println("add treeset complete");
+        Long containsEfficiencyTreeSet = calc.setContainsEfficiency(treeSet);
+        System.out.println("contains Treeset complete");
+        Long removeEfficiencyTreeSet = calc.setRemoveEfficiency(treeSet);
+        arrayList.clear();
+        linkedList.clear();
+        hashSet.clear();
+        treeSet.clear();
+
+        String[] columnNames = {
+                "Collection name",
+                "Add",
+                "Get",
+                "Remove",
+                "Contains",
+                "Populate",
+                "Iterator add",
+                "Iterator remove"
+        };
+        String[][] data = {
+                {"ArrayList", addEfficiencyArrayList.toString(), getEfficiencyArrayList.toString(),
+                        removeEfficiencyArrayList.toString(), containsEfficiencyArrayList.toString(),
+                        populateEfficiencyArrayList.toString(), iteratorAddEfficiencyArrayList.toString(),
+                        iteratorRemoveEfficiencyArrayList.toString()},
+                {"LinkedList", addEfficiencyLinkedList.toString(), getEfficiencyLinkedList.toString(),
+                        removeEfficiencyLinkedList.toString(), containsEfficiencyLinkedList.toString(),
+                        populateEfficiencyLinkedList.toString(), listIteratorEfficiencyLinkedList.toString(),
+                        iteratorRemoveEfficiencyLinkedList.toString()},
+                {"HashSet", addEfficiencyHashSet.toString(), " ", removeEfficiencyHashSet.toString(),
+                        containsEfficiencyHashSet.toString(), populateEfficiencyHashSet.toString(), " ", " "},
+                {"TreeSet", addEfficiencyTreeSet.toString(), " ", removeEfficiencyTreeSet.toString(),
+                        containsEfficiencyTreeSet.toString(), populateEfficiencyTreeSet.toString(), " ", " "}
+        };
+        JFrame frame = new JFrame("Colletions");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JTable table = new JTable(data, columnNames);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        frame.getContentPane().add(scrollPane);
+        frame.setPreferredSize(new Dimension(450, 200));
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public long listPopulateEfficiency(List<Integer> someList, int n){
@@ -87,11 +148,13 @@ public class Calculate {
         long result;
         long calc = 0;
         for (int i = 0; i < 100; i++) {
+            System.out.println("Started calculate list get efficiency");
             Date currentTime = new Date();
             list.get(someList);
             Date newTime = new Date();
             long msDelay = newTime.getTime() - currentTime.getTime();
             time.add(msDelay);
+            System.out.println(i+" % complete.");
         }
         for (int i = 0; i < time.size(); i++) {
             calc += time.get(i);
@@ -141,11 +204,13 @@ public class Calculate {
             long result;
             long calc = 0;
             for (int i = 0; i < 100; i++) {
+                System.out.println("Started calculate list iterator add efficiency");
                 Date currentTime = new Date();
                 list.iteratorAdd(someList, n);
                 Date newTime = new Date();
                 long msDelay = newTime.getTime() - currentTime.getTime();
                 time.add(msDelay);
+                System.out.println(i+" % complete.");
                 if(i <99){
                     someList.clear();
                 }

@@ -1,0 +1,47 @@
+<project name="collections" basedir=".">
+
+    <property name="src" location="src"/>
+    <property name="build" location='build'/>
+    <property name="dist" location="dist"/>
+    <property name="lib" location="lib"/>
+
+
+    <path id="library">
+        <pathelement location="${lib}/javax.annotation.jar"/>
+        <pathelement location="${lib}/javax.ejb.jar"/>
+        <pathelement location="${lib}/javax.jms.jar"/>
+        <pathelement location="${lib}/javax.persistence.jar"/>
+        <pathelement location="${lib}/javax.resource.jar"/>
+        <pathelement location="${lib}/javax.servlet.jar"/>
+        <pathelement location="${lib}/javax.servlet.jsp.jar"/>
+        <pathelement location="${lib}/javax.servlet.jsp.jstl.jar"/>
+        <pathelement location="${lib}/javax.transaction.jar"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${build}" source="1.8" target="1.8">
+                <classpath>
+                    <path refid="library"/>
+                </classpath>
+        </javac>
+    </target>
+
+    <target name="dist" depends="compile">
+        <jar destfile="${dist}/collections.jar">
+            <fileset dir="${build}"/>
+            <manifest>
+                <attribute name="Main-Class" value="com.goit.gojavaonline.collections.Calculate"/>
+            </manifest>
+        </jar>
+    </target>
+</project>
